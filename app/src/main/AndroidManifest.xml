@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.aaaaaaaaaaaa">
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="BIS"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".MainActivity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".CreateAccount_login"></activity>
+        <activity android:name=".DoctorMenuActivity"></activity>
+        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".AppointmentsActivity"></activity>
+        <activity android:name=".ScheduleAppointmentActivity"></activity>
+        <activity android:name=".SearchDoctorSpecialityActivity"></activity>
+        <activity android:name=".DisplayDoctorInfo"></activity>
+        <activity android:name=".DoctorLocalisation"></activity>
+
+
+
+
+    </application>
+
+    </manifest>
