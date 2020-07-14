@@ -1,15 +1,14 @@
 package com.example.aaaaaaaaaaaa;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aaaaaaaaaaaa.Retrofit.INodeJs;
 import com.example.aaaaaaaaaaaa.Retrofit.RetrofitClient;
@@ -29,32 +28,28 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-
-public class DoctorsBySpecialityActivity extends AppCompatActivity {
-    TextView doctorSpeciality;
-    ListView myDoctorsBySpecialityListView;
-    List<Doctor>  myDoctors;
-    ListViewAdapter adapter;
+public class SearchDoctorActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    List<Doctor> myDoctors;
 
     INodeJs myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctors_by_speciality);
-        Intent intent = getIntent();
-        String receivedSpeciality = intent.getStringExtra("speciality");
-        final String speciality = intent.getStringExtra("speciality");
-        myDoctorsBySpecialityListView = findViewById(R.id.myDoctorsBySpeciality);
-        doctorSpeciality = findViewById(R.id.speciality);
-        doctorSpeciality.setText(speciality);
+        setContentView(R.layout.activity_search_doctor);
+        recyclerView= (RecyclerView)findViewById(R.id.myRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myDoctors = new ArrayList<>();
+        recyclerView.setAdapter(new doctorAdapters(myDoctors));
 
         //nit api
         Retrofit retrofit = RetrofitClient.getInstance();
-        myAPI = retrofit.create(INodeJs.class);
+        myAPI = retrofit.create(INodeJs .class);
 
         compositeDisposable.add(myAPI.get_all_doctors("")
                 .subscribeOn(Schedulers.io())
@@ -81,28 +76,53 @@ public class DoctorsBySpecialityActivity extends AppCompatActivity {
                             speciality = object.getString("speciality");
                             address = object.getString("address");
                             city = object.getString("city");
-                            if (receivedSpeciality.equals(speciality)) {
-                                myDoctors.add(new Doctor(fullName, phoneNumber, email, speciality, address, city));
-                                Collections.sort(myDoctors);
-                                adapter = new ListViewAdapter(getApplicationContext(), myDoctors);
-                                myDoctorsBySpecialityListView.setAdapter(adapter);
-                            }
+
+                            myDoctors.add(new Doctor(fullName,phoneNumber,email,speciality,address,city));
+                            Collections.sort(myDoctors);
                         }
                     }
                 }));
 
-        myDoctorsBySpecialityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), DisplayDoctorInfo.class);
-                intent.putExtra("fullName",myDoctors.get(position).getFullName());
-                intent.putExtra("email",myDoctors.get(position).getEmail());
-                intent.putExtra("speciality",myDoctors.get(position).getSpeciality());
-                intent.putExtra("phoneNumber",myDoctors.get(position).getPhoneNumber());
-                intent.putExtra("address", myDoctors.get(position).getAddress());
-                intent.putExtra("city", myDoctors.get(position).getCity());
-                startActivity(intent);
-            }
-        });
+
+
+    }
+    class doctorAdapters extends RecyclerView.Adapter<DoctorViewHolder>{
+        List<Doctor> myDoctors;
+        public doctorAdapters(List<Doctor> myDoctors) {
+            super();
+            this.myDoctors=myDoctors;
+        }
+        @NonNull
+        @Override
+        public DoctorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new DoctorViewHolder(parent);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull DoctorViewHolder holder, int position) {
+            holder.bind(this.myDoctors.get(position));
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return myDoctors.size();
+        }
+    }
+    class DoctorViewHolder extends RecyclerView.ViewHolder{
+        private TextView fullName;
+        private TextView emailAddress;
+        public DoctorViewHolder(ViewGroup container)
+        {
+            super(LayoutInflater.from(SearchDoctorActivity.this).inflate(R.layout.item_layout, container, false));
+            fullName=(TextView)itemView.findViewById(R.id.fullName);
+            emailAddress=(TextView)itemView.findViewById(R.id.emailAddress);
+        }
+        public void bind(Doctor doctor)
+        {
+            fullName.setText(doctor.getFullName());
+            emailAddress.setText(doctor.getEmail());
+        }
     }
 }
+

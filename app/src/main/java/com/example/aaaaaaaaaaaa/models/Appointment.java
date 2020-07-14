@@ -20,6 +20,14 @@ public class Appointment {
         this.status = statusValues[0];
     }
 
+    public Appointment(String date, String time, String emailDoctor, String emailPatient, String status) {
+        this.date = date;
+        this.time = time;
+        this.emailDoctor = emailDoctor;
+        this.emailPatient = emailPatient;
+        this.status = status;
+    }
+
 
     public String getDate() {
         return date;

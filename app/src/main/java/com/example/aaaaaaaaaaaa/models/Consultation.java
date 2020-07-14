@@ -2,8 +2,8 @@ package com.example.aaaaaaaaaaaa.models;
 
 public class Consultation {
     String doctorName;
-    String doctorEmail;
-    String patientEmail;
+    String emailDoctor;
+    String emailPatient;
     String disease;
     String date;
     String price;
@@ -12,10 +12,10 @@ public class Consultation {
     public Consultation() {
     }
 
-    public Consultation(String doctorName, String doctorEmail, String patientEmail, String disease, String date, String price, String prescription) {
+    public Consultation(String doctorName, String emailDoctor, String emailPatient, String disease, String date, String price, String prescription) {
         this.doctorName = doctorName;
-        this.doctorEmail = doctorEmail;
-        this.patientEmail = patientEmail;
+        this.emailDoctor = emailDoctor;
+        this.emailPatient = emailPatient;
         this.disease = disease;
         this.date = date;
         this.price = price;
@@ -31,19 +31,19 @@ public class Consultation {
     }
 
     public String getDoctorEmail() {
-        return doctorEmail;
+        return emailDoctor;
     }
 
     public void setDoctorEmail(String doctorEmail) {
-        this.doctorEmail = doctorEmail;
+        this.emailDoctor = doctorEmail;
     }
 
     public String getPatientEmail() {
-        return patientEmail;
+        return emailPatient;
     }
 
     public void setPatientEmail(String patientEmail) {
-        this.patientEmail = patientEmail;
+        this.emailPatient = patientEmail;
     }
 
     public String getDisease() {

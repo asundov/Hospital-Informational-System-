@@ -81,6 +81,7 @@ public class FragmentOne extends Fragment {
                             speciality = object.getString("speciality");
                             address = object.getString("address");
                             city = object.getString("city");
+
                                 myDoctors.add(new Doctor(fullName,phoneNumber,email,speciality,address,city));
                                 Collections.sort(myDoctors);
                                 adapter = new ListViewAdapter(getContext(), myDoctors);

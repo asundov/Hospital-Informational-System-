@@ -49,4 +49,33 @@ public interface INodeJs {
     @POST("get_all_doctors")
     @FormUrlEncoded
     Observable<String> get_all_doctors(@Field("doctors") String doctors);
+
+    @POST("add_appointment")
+    @FormUrlEncoded
+    Observable<String> add_appointment(@Field("date") String date,
+                                       @Field("time") String time,
+                                       @Field("emailDoctor") String emailDoctor,
+                                       @Field("emailPatient") String emailPatient,
+                                       @Field("status") String status);
+
+    @POST("get_hospitalisation")
+    @FormUrlEncoded
+    Observable<String> get_hospitalisation(@Field("emailPatient") String emailPatient);
+
+    @POST("get_consultation")
+    @FormUrlEncoded
+    Observable<String> get_consultation(@Field("emailPatient") String emailPatient);
+
+    @POST("get_consultation_doctor")
+    @FormUrlEncoded
+    Observable<String> get_consultation_doctor(@Field("emailPatient") String emailPatient);
+
+    @POST("relationship")
+    @FormUrlEncoded
+    Observable<String> relationship(@Field("emailPatient") String emailPatient);
+
+    @POST("get_patient")
+    @FormUrlEncoded
+    Observable<String> get_patient(@Field("emailPatient") String emailPatient);
+
 }
