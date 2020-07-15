@@ -63,15 +63,7 @@ public class MyDoctorInfoActivity extends AppCompatActivity {
         speciality.setText(receivedSpeciality);
 
 
-//        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-//        StorageReference profileRef = storageReference.child("Profile pictures").child(receivedEmail + ".jpg");
-//        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//            @Override
-//            public void onSuccess(Uri uri) {
-//                Picasso.get().load(uri).into(circleImageView);
-//                progressBar.setVisibility(View.GONE);
-//            }
-//        });
+
     }
 
     public void phoneCall(View view) {
