@@ -92,34 +92,6 @@ public class AcceptedFragment extends Fragment {
                     }
                 }));
 
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        emailPatient = user.getEmail();
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Appointments");
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                myAppointments.clear();
-//                for(DataSnapshot data : dataSnapshot.getChildren())
-//                {
-//                    Appointment appointment = data.getValue(Appointment.class);
-//                    if(appointment.getEmailPatient().equals(emailPatient) && appointment.getStatus().equals("Accepted")) {
-//                        myAppointments.add(appointment);
-//                        if (getActivity()!=null){
-//                            adapter = new AppointmentAdapter(getActivity(), myAppointments);
-//                            acceptedAppointments.setAdapter(adapter);
-//                        }
-//                    }
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
-
-
         return view;
     }
 }

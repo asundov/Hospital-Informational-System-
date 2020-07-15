@@ -78,4 +78,13 @@ public interface INodeJs {
     @FormUrlEncoded
     Observable<String> get_patient(@Field("emailPatient") String emailPatient);
 
+    @POST("get_uri")
+    @FormUrlEncoded
+    Observable<String> get_uri(@Field("emailPatient") String emailPatient,
+                              @Field("uri") String uri);
+
+    @POST("get_uri_for_profile")
+    @FormUrlEncoded
+    Observable<String> get_uri_for_profile(@Field("emailPatient") String emailPatient);
+
 }
