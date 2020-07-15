@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -63,8 +64,8 @@ public class MyDoctorsAdapter extends BaseAdapter {
         final TextView speciality = convertView.findViewById(R.id.speciality);
         final Doctor doctor = myDoctorsList.get(position);
         final String emailDoctor = doctor.getEmail();
-
-        doctorFullName.setText("Dr. "+doctor.getFullName());
+        Toast.makeText(mContext, "email"+emailDoctor, Toast.LENGTH_SHORT).show();
+        doctorFullName.setText("Dr. "+ doctor.getFullName());
         speciality.setText(doctor.getSpeciality());
 
 

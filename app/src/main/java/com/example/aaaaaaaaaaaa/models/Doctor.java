@@ -21,6 +21,11 @@ public class Doctor implements Comparable<Doctor> {
         this.speciality = speciality;
     }
 
+    public Doctor(String fullName, String speciality) {
+        this.fullName = fullName;
+         this.speciality = speciality;
+    }
+
     public String getFullName() {
         return fullName;
     }

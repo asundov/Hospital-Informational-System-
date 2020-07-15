@@ -121,7 +121,8 @@ public class PatientProfileInformations extends AppCompatActivity {
         Intent intent = new Intent(this, EditProfileActivity.class);
         intent.putExtra(RevealAnimation.EXTRA_CIRCULAR_REVEAL_X, revealX);
         intent.putExtra(RevealAnimation.EXTRA_CIRCULAR_REVEAL_Y, revealY);
-        intent.putExtra("fullName", firstNameRetrieved + " " + lastNameRetrieved);
+        intent.putExtra("firstName", firstNameRetrieved);
+        intent.putExtra("lastName", lastNameRetrieved);
         intent.putExtra("cin", cinRetrieved);
         intent.putExtra("email", emailRetrieved);
         intent.putExtra("birthDate", birthdateRetrieved);
@@ -143,6 +144,7 @@ public class PatientProfileInformations extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(PatientProfileInformations.this, MenuActivity.class);
+        intent.putExtra("patient_email", emailRetrieved);
         MenuActivity.setToken(1);
         startActivity(intent);
     }

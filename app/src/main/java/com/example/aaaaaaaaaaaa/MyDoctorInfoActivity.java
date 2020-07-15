@@ -44,7 +44,6 @@ public class MyDoctorInfoActivity extends AppCompatActivity {
         frameLayout = findViewById(R.id.myFrameLayout);
         imageView = findViewById(R.id.topside);
         circleImageView = findViewById(R.id.profile_image);
-        progressBar = findViewById(R.id.myProgressBar);
         imageView.setImageBitmap(ImageResizer.decodeSampledBitmapFromResource(getResources(), R.drawable.topside, 250, 500));
         Bitmap bMap = ImageResizer.decodeSampledBitmapFromResource(getResources(), R.drawable.background, 100, 100);
         BitmapDrawable dr = new BitmapDrawable(bMap);

@@ -19,6 +19,7 @@
         app:civ_border_color="#FFFFFF"
         app:civ_border_width="2dp"
         android:layout_gravity="center"
+        android:src="@drawable/doctor"
         android:layout_marginBottom="60dp" />
 
     <LinearLayout
@@ -81,15 +82,7 @@
     </LinearLayout>
 
 
-    <ProgressBar
-        android:id="@+id/myProgressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="55dp"
-        android:indeterminateTint="#9E9E9E"
-        />
+
 
 
 

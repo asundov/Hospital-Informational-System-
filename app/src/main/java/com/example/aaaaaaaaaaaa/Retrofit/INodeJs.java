@@ -48,7 +48,7 @@ public interface INodeJs {
 
     @POST("get_all_doctors")
     @FormUrlEncoded
-    Observable<String> get_all_doctors(@Field("doctors") String doctors);
+    Observable<String> get_all_doctors(@Field("fullName") String doctors);
 
     @POST("add_appointment")
     @FormUrlEncoded
@@ -87,4 +87,12 @@ public interface INodeJs {
     @FormUrlEncoded
     Observable<String> get_uri_for_profile(@Field("emailPatient") String emailPatient);
 
+    @POST("update_patient")
+    @FormUrlEncoded
+    Observable<String> update_patient(@Field("firstName") String firstName,
+                                       @Field("lastName") String lastName,
+                                       @Field("birthDate") String birthDate,
+                                       @Field("email") String email,
+                                       @Field("CIN") String CIN,
+                                       @Field("maritalStatus") String maritalStatus);
 }

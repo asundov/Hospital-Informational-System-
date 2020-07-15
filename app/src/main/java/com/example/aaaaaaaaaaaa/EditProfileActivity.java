@@ -6,16 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.aaaaaaaaaaaa.Retrofit.INodeJs;
 import com.example.aaaaaaaaaaaa.Retrofit.RetrofitClient;
 import com.squareup.picasso.Picasso;
-
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -29,9 +30,10 @@ public class EditProfileActivity extends AppCompatActivity {
     RevealAnimation mRevealAnimation;
     CircleImageView circleImageView;
     private Uri mImageUri;
-    EditText fullName, cin, email, phoneNumber, birthDate, maritalStatus;
-    String receivedFullName, receivedCin, receivedEmail, receivedPhoneNumber, receivedBirthDate, receivedMaritalStatus;
+    EditText firstName, lastName, cin, email, birthDate, maritalStatus;
+    String receivedFirstName, receivedLastName, receivedCin, receivedEmail, receivedBirthDate, receivedMaritalStatus;
     String receivedImageUri;
+    Button save;
 
     INodeJs myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -42,10 +44,10 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        fullName = findViewById(R.id.fullName);
+        firstName = findViewById(R.id.firstName);
         cin = findViewById(R.id.cin);
         email = findViewById(R.id.email);
-        phoneNumber = findViewById(R.id.phoneNumber);
+        lastName = findViewById(R.id.lastName);
         birthDate = findViewById(R.id.birthDate);
         maritalStatus = findViewById(R.id.maritalStatus);
         circleImageView = findViewById(R.id.profile_image);
@@ -53,22 +55,14 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();   //get the intent to recieve the x and y coords, that you passed before
 
-        receivedFullName = intent.getStringExtra("fullName");
+        receivedFirstName = intent.getStringExtra("firstName");
+        receivedLastName = intent.getStringExtra("lastName");
         receivedCin = intent.getStringExtra("cin");
         receivedEmail = intent.getStringExtra("email");
-        receivedPhoneNumber = intent.getStringExtra("phoneNumber");
         receivedBirthDate = intent.getStringExtra("birthDate");
         receivedMaritalStatus = intent.getStringExtra("maritalStatus");
         receivedImageUri = intent.getStringExtra("imageUri");
         Uri uri = Uri.parse(receivedImageUri);
-
-        fullName.setText(receivedFullName);
-        cin.setText(receivedCin);
-        email.setText(receivedEmail);
-        phoneNumber.setText(receivedPhoneNumber);
-        birthDate.setText(receivedBirthDate);
-        maritalStatus.setText(receivedMaritalStatus);
-        Picasso.get().load(uri).into(circleImageView);
 
         FrameLayout rootLayout = findViewById(R.id.root); //there you have to get the root layout of your second activity
         mRevealAnimation = new RevealAnimation(rootLayout, intent, this);
@@ -83,7 +77,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Toast.makeText(EditProfileActivity.this, "s je "+s, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileActivity.this, "s je " + s, Toast.LENGTH_SHORT).show();
 //                        JSONArray jsonArray = new JSONArray(s);
 //
 //                        String uri = "";
@@ -133,26 +127,27 @@ public class EditProfileActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
     }
 
-    private void uploadImage( String uri) {
+    private void uploadImage(String uri) {
 
         //nit api
         Retrofit retrofit = RetrofitClient.getInstance();
         myAPI = retrofit.create(INodeJs.class);
 
-        compositeDisposable.add(myAPI.get_uri(receivedEmail, getExtension(mImageUri))
+        compositeDisposable.add(myAPI.get_uri(receivedEmail, mImageUri.toString())
 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Toast.makeText(EditProfileActivity.this, "bravo ja je "+s, Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(EditProfileActivity.this, "bravo ja je " + s, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(EditProfileActivity.this, PatientProfileInformations.class);
+                        intent.putExtra("patient_email", receivedEmail);
+                        startActivity(intent);
+                    }
 
-                    }));
-                           }
-
-
+                }));
+    }
 
 
 //        StorageReference ref = mStorageReference.child(receivedEmail + "." + getExtension(mImageUri));
@@ -164,34 +159,24 @@ public class EditProfileActivity extends AppCompatActivity {
 //        });
 
 
-        //  }
+    //  }
 
     public void update(View view) {
 
+        if (email.getText().toString().equals(receivedEmail)) {
+            compositeDisposable.add(myAPI.update_patient(firstName.getText().toString(), lastName.getText().toString(), cin.getText().toString(), email.getText().toString(), birthDate.getText().toString(), maritalStatus.getText().toString())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String s) throws Exception {
+                            Toast.makeText(EditProfileActivity.this, "Successful update!", Toast.LENGTH_SHORT).show();
+                        }
+                    }));
 
-//        database = FirebaseDatabase.getInstance();
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        final String userUid = user.getUid();
-//        DatabaseReference dbRef = database.getReference("Patients");
-//        String[] fn = fullName.getText().toString().split(" ");
-//        final Patient patient = new Patient(fn[0],fn[1],birthDate.getText().toString(),phoneNumber.getText().toString(),email.getText().toString()
-//                ,cin.getText().toString(),maritalStatus.getText().toString());
-//        dbRef.child(userUid).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                dataSnapshot.getRef().setValue(patient);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//        Intent intent = new Intent(EditProfileActivity.this, PatientProfileInformations.class);
-//        MyPreferences preferences = new MyPreferences(this);
-//
-//        preferences.setString("emailpatient", receivedEmail);
-//        startActivity(intent);
+            Intent intent = new Intent(EditProfileActivity.this, PatientProfileInformations.class);
+            intent.putExtra("patient_email", receivedEmail);
+            startActivity(intent);
+        } else Toast.makeText(this, "You cannot change email!!", Toast.LENGTH_SHORT).show();
     }
-
 }

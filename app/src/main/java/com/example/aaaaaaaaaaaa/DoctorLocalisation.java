@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -48,7 +49,7 @@ public class DoctorLocalisation extends FragmentActivity implements OnMapReadyCa
         Intent intent = getIntent();
         String address = intent.getStringExtra("address");
         String city = intent.getStringExtra("city");
-        LatLng location = getLocationFromAddress(DoctorLocalisation.this, address+", "+city);
+        LatLng location = getLocationFromAddress(DoctorLocalisation.this, address);
         mMap.addMarker(new MarkerOptions().position(location).title("Marker in "+city));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
