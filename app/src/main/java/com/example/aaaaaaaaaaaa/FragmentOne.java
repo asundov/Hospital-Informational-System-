@@ -82,14 +82,14 @@ public class FragmentOne extends Fragment {
                             address = object.getString("address");
                             city = object.getString("city");
 
-                                myDoctors.add(new Doctor(fullName,phoneNumber,email,speciality,address,city));
+                                myDoctors.add(new Doctor(fullName,phoneNumber,email,city,address,speciality));
                                 Collections.sort(myDoctors);
                                 adapter = new ListViewAdapter(getContext(), myDoctors);
                                 listView.setAdapter(adapter);
 
                         }
                     }
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -87,18 +87,28 @@ public class ConsultationAdapter extends BaseAdapter {
         final Consultation Consultation = consultationList.get(position);
         final String emailDoctor = Consultation.getDoctorEmail();
 
+
+
         compositeDisposable.add(myAPI.get_consultation_doctor(emailDoctor)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        doctorFullName.setText("Dr. "+emailDoctor);
+                        JSONArray jsonArray = new JSONArray(s);
+                        String fullName="";
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(0);
+
+                            fullName = object.getString("fullName");
+
+                        }
+                        doctorFullName.setText("Dr. "+fullName);
                         day.setText(Consultation.getDate());
 
 
     }
-}));
+}, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
 
 
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Doctors");

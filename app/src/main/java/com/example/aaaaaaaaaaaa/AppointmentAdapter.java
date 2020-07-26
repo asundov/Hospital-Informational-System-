@@ -105,16 +105,16 @@ public class AppointmentAdapter extends BaseAdapter {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject object = jsonArray.getJSONObject(0);
 
-                                String email = object.getString("email");
+                                String fullName = object.getString("fullName");
 
-                                    doctorFullName.setText(email);
+                                    doctorFullName.setText(fullName);
                                     day.setText(appointment.getDate());
                                     time.setText(appointment.getTime());
 
 
                             }
                         }
-                    }));
+                    }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
 
 
 

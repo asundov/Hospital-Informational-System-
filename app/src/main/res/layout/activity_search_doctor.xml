@@ -11,7 +11,7 @@
         android:hint="Search..."
         android:drawableRight="@drawable/search"
         android:layout_marginTop="25.5dp"
-        android:backgroundTint="#33AEB6"
+        android:backgroundTint="#1B61B5"
         />
 
     <androidx.recyclerview.widget.RecyclerView

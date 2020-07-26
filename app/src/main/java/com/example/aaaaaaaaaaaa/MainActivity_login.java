@@ -86,7 +86,6 @@ public class MainActivity_login extends AppCompatActivity {
             pDialog.setTitleText("Loading");
             pDialog.setCancelable(false);
             pDialog.show();
-            Toast.makeText(MainActivity_login.this, "tempovi" + tempEmail + tempPassword, Toast.LENGTH_SHORT).show();
 
             compositeDisposable.add(myAPI.loginUser(tempEmail, tempPassword)
                     .subscribeOn(Schedulers.io())
@@ -96,7 +95,6 @@ public class MainActivity_login extends AppCompatActivity {
                         public void accept(String s) throws Exception {
 
                             if (s.contains("email")) {
-                                Toast.makeText(MainActivity_login.this, ""+s, Toast.LENGTH_SHORT).show();
 
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putString("email", tempEmail).apply();
@@ -136,7 +134,7 @@ public class MainActivity_login extends AppCompatActivity {
 
                             }
                         }
-                    }));
+                    }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
         }
     }
 

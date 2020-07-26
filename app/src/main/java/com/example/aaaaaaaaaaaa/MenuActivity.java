@@ -73,6 +73,24 @@ public class MenuActivity extends AppCompatActivity {
 
         preferences.setString("emailpatient", patientEmail);
 
+        compositeDisposable.add(myAPI.get_patient(patientEmail)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+
+                        String firstName;
+                        numberOfAppointments = 0;
+                        JSONArray jsonArray = new JSONArray(s);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            firstName = object.getString("firstName");
+                            cin.setText(firstName + "!");
+                        }
+                    }
+                }));
+
 
         compositeDisposable.add(myAPI.get_appointment(patientEmail)
                 .subscribeOn(Schedulers.io())
@@ -150,7 +168,7 @@ public class MenuActivity extends AppCompatActivity {
                         }
 
                     }
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
     }
 
 
@@ -226,7 +244,7 @@ public class MenuActivity extends AppCompatActivity {
                         SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
                         dialog.setConfirmText("Yes");
                         dialog.setCancelText("No");
-                        dialog.setContentText("Are you sure want to close HealthCare ?");
+                        dialog.setContentText("Are you sure want to close BIS?");
                         dialog.setTitleText("Close application");
                         dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override

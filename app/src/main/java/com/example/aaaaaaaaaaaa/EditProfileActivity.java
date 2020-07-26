@@ -77,7 +77,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Toast.makeText(EditProfileActivity.this, "s je " + s, Toast.LENGTH_SHORT).show();
 //                        JSONArray jsonArray = new JSONArray(s);
 //
 //                        String uri = "";
@@ -91,7 +90,7 @@ public class EditProfileActivity extends AppCompatActivity {
 //                        Picasso.get().load(myURI.toString()).into(circleImageView);
                     }
 
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
     }
 
     public void onBackPressed() {
@@ -114,7 +113,6 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Pick_Image_Request && resultCode == RESULT_OK && data != null && data.getData() != null) {
             mImageUri = data.getData();
-            Toast.makeText(this, "aa" + mImageUri, Toast.LENGTH_SHORT).show();
             Picasso.get().load(mImageUri).into(circleImageView);
             uploadImage(mImageUri.toString());
         }
@@ -140,13 +138,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Toast.makeText(EditProfileActivity.this, "bravo ja je " + s, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(EditProfileActivity.this, PatientProfileInformations.class);
                         intent.putExtra("patient_email", receivedEmail);
                         startActivity(intent);
                     }
 
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
     }
 
 
@@ -172,7 +169,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         public void accept(String s) throws Exception {
                             Toast.makeText(EditProfileActivity.this, "Successful update!", Toast.LENGTH_SHORT).show();
                         }
-                    }));
+                    }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
 
             Intent intent = new Intent(EditProfileActivity.this, PatientProfileInformations.class);
             intent.putExtra("patient_email", receivedEmail);

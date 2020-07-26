@@ -84,7 +84,7 @@ public class PatientProfileInformations extends AppCompatActivity {
 
                     }
 
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));;
 
 
 //        ************* problem :) *********
@@ -108,7 +108,7 @@ public class PatientProfileInformations extends AppCompatActivity {
 //                        Uri uri = Uri.parse(receivedImageUri);
 //                        Picasso.get().load(uri).into(circleImageView);
                     }
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
     }
 
 

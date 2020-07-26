@@ -64,7 +64,6 @@ public class MyDoctorsAdapter extends BaseAdapter {
         final TextView speciality = convertView.findViewById(R.id.speciality);
         final Doctor doctor = myDoctorsList.get(position);
         final String emailDoctor = doctor.getEmail();
-        Toast.makeText(mContext, "email"+emailDoctor, Toast.LENGTH_SHORT).show();
         doctorFullName.setText("Dr. "+ doctor.getFullName());
         speciality.setText(doctor.getSpeciality());
 

@@ -24,7 +24,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="I"
-            android:textColor="#00a2b1"
+            android:textColor="#1B61B5"
             android:textSize="18sp" />
 
         <TextView

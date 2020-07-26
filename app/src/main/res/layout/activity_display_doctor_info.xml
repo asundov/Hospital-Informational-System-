@@ -14,13 +14,13 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="124dp"
-        android:layout_height="124dp"
+        android:layout_width="174dp"
+        android:layout_height="174dp"
         app:civ_border_color="#FFFFFF"
         app:civ_border_width="2dp"
         android:layout_gravity="center"
         android:src="@drawable/doctor"
-        android:layout_marginBottom="60dp" />
+        android:layout_marginBottom="110dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,21 +29,29 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="60dp">
+
         <TextView
             android:id="@+id/fullName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/montserrat_bold"
             android:text=""
-            android:layout_marginBottom="10dp"/>
+            android:textSize="35sp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+
         <TextView
             android:id="@+id/speciality"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="27sp"
-            android:fontFamily="@font/montserrat"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text=""
+            android:textSize="35sp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+
 
     </LinearLayout>
 

@@ -90,7 +90,9 @@ public class AcceptedFragment extends Fragment {
                             }
                         }
                     }
-                }));
+
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
+
 
         return view;
     }

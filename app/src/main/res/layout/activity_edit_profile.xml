@@ -16,7 +16,7 @@
         android:layout_width="124dp"
         android:layout_height="124dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="100dp"
         app:civ_border_color="#FFFFFF"
         app:civ_border_width="2dp"
         android:src="@drawable/a" />
@@ -24,7 +24,7 @@
         android:id="@+id/profilePictureButton"
         android:layout_width="35dp"
         android:layout_height="34dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="200dp"
         android:layout_marginLeft="30dp"
         android:background="@drawable/ic_photo_camera"
         android:layout_gravity="center_horizontal"
@@ -56,8 +56,9 @@
                 android:id="@+id/firstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="First name"
                 android:fontFamily="@font/montserrat"
-                android:backgroundTint="#33AEB6"
+                android:backgroundTint="#1B61B5"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -80,7 +81,8 @@
                 android:id="@+id/lastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#33AEB6"
+                android:backgroundTint="#1B61B5"
+                android:hint="Last name"
                 android:fontFamily="@font/montserrat"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -105,7 +107,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:backgroundTint="#33AEB6"
+                android:hint="CIN"
+                android:backgroundTint="#1B61B5"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -129,7 +132,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:backgroundTint="#33AEB6"
+                android:hint="email"
+                android:backgroundTint="#1B61B5"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -153,7 +157,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:backgroundTint="#33AEB6"
+                android:hint="Birth date"
+                android:backgroundTint="#1B61B5"
                 android:textSize="16sp" />
         </LinearLayout>
         <LinearLayout
@@ -176,7 +181,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:backgroundTint="#33AEB6"
+                android:backgroundTint="#1B61B5"
+                android:hint="Marital status"
                 android:textSize="16sp" />
         </LinearLayout>
         <Button
@@ -186,7 +192,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:background="@drawable/outline_button"
             android:text="Save changes"
-            android:textColor="#33AEB6"
+            android:textColor="#1B61B5"
             android:layout_marginBottom="20dp"
             android:textAllCaps="false"
             android:onClick="update"/>

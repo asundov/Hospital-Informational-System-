@@ -89,7 +89,7 @@ public class DoctorsBySpecialityActivity extends AppCompatActivity {
                             }
                         }
                     }
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
 
         myDoctorsBySpecialityListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -37,8 +37,7 @@ public class DoctorLocalisation extends FragmentActivity implements OnMapReadyCa
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
+     * This is where we can add markers or lines, add listeners or move the camera.
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
@@ -53,7 +52,7 @@ public class DoctorLocalisation extends FragmentActivity implements OnMapReadyCa
         mMap.addMarker(new MarkerOptions().position(location).title("Marker in "+city));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
-
+//
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);

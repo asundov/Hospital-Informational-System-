@@ -12,7 +12,7 @@ public class DoctorMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_menu);
 
-        Toast.makeText(DoctorMenuActivity.this, "odvelo me na doktora", Toast.LENGTH_SHORT).show();
+        Toast.makeText(DoctorMenuActivity.this, "Work in progress!", Toast.LENGTH_SHORT).show();
 
     }
 }

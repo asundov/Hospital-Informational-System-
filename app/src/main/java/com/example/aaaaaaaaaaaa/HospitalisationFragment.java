@@ -56,7 +56,6 @@ public class HospitalisationFragment extends Fragment {
         MedicalFolderActivity activity = (MedicalFolderActivity) getActivity();
         String emailPatient = activity.getMyData();
 
-        Toast.makeText(activity, "emaaaail " + emailPatient, Toast.LENGTH_SHORT).show();
 
 
         compositeDisposable.add(myAPI.get_hospitalisation(emailPatient)
@@ -90,7 +89,7 @@ public class HospitalisationFragment extends Fragment {
                             }
                         }
                     }
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
 
 //        user = FirebaseAuth.getInstance().getCurrentUser();
 //        emailPatient = user.getEmail();

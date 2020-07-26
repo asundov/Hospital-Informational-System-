@@ -24,6 +24,7 @@
             android:layout_marginLeft="50dp"
             app:civ_border_width="2dp"
             android:layout_marginRight="10dp"
+            android:src="@drawable/patient"
             app:civ_border_color="#FFF" />
 
         <LinearLayout
@@ -37,18 +38,23 @@
                 android:layout_width="156dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/bad_script"
+                android:gravity="center_horizontal"
+                android:text="Hello"
+                android:textAlignment="center"
                 android:textColor="#FFF"
-                android:textSize="20sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/cin"
                 android:layout_width="156dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/bad_script"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
                 android:textColor="#FFF"
-                android:textSize="18sp" />
+                android:textSize="40sp" />
         </LinearLayout>
 
 

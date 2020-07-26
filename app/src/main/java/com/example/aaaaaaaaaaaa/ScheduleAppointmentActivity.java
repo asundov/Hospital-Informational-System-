@@ -143,7 +143,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                             time.setVisibility(View.VISIBLE);
                         }
 
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
     }
 
     public void confirm(View view) {
@@ -172,7 +172,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                                     .show();
                         }
                     }
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
     }
 }
 

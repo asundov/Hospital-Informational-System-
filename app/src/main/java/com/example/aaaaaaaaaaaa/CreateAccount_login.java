@@ -162,13 +162,12 @@ public class CreateAccount_login extends AppCompatActivity {
                     .subscribe(new Consumer<String>() {
                                    @Override
                                    public void accept(String s) throws Exception {
-                                       Toast.makeText(CreateAccount_login.this, "" + s, Toast.LENGTH_SHORT).show();
                                        ld.dismissDialog();
                                        Intent createAccountIntent = new Intent(CreateAccount_login.this, MainActivity_login.class);
                                        startActivity(createAccountIntent);
                                    }
                                }
-                    ));
+                            , new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
         }
     }
 
@@ -218,13 +217,12 @@ public class CreateAccount_login extends AppCompatActivity {
                     .subscribe(new Consumer<String>() {
                                    @Override
                                    public void accept(String s) throws Exception {
-                                       Toast.makeText(CreateAccount_login.this, "" + s, Toast.LENGTH_SHORT).show();
                                        ld.dismissDialog();
                                        Intent createAccountIntent = new Intent(CreateAccount_login.this, MainActivity_login.class);
                                        startActivity(createAccountIntent);
                                    }
                                }
-                    ));
+                            , new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
         }
     }
 

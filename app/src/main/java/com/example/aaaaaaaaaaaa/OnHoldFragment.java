@@ -86,7 +86,7 @@ public class OnHoldFragment extends Fragment {
                             }
                         }
                     }
-                }));
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
 
 //        user = FirebaseAuth.getInstance().getCurrentUser();
 //        emailPatient = user.getEmail();

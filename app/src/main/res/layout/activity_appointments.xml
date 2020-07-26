@@ -30,9 +30,10 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#33aeb6"
+            android:background="#1B61B5"
             app:tabInlineLabel="true"
-            app:tabTextColor="#FFFFFF"/>
+            app:tabTextColor="#FFFFFF"
+            app:tabIndicatorColor="@android:color/white"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

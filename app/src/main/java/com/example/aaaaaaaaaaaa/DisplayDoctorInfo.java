@@ -32,7 +32,7 @@ public class DisplayDoctorInfo extends AppCompatActivity {
     ImageView imageView;
     CircleImageView circleImageView;
     TextView fullName, speciality;
-    String receivedEmail, receivedPhoneNumber, receivedAddress, receivedCity;
+    String receivedEmail, receivedPhoneNumber, receivedAddress, receivedCity, receivedSpeciality;
     ProgressBar progressBar;
 
     @Override
@@ -54,13 +54,14 @@ public class DisplayDoctorInfo extends AppCompatActivity {
 
         String receivedFullName = intent.getStringExtra("fullName");
         receivedEmail = intent.getStringExtra("email");
-        String receivedSpeciality = intent.getStringExtra("speciality");
+        receivedSpeciality = intent.getStringExtra("speciality");
         receivedPhoneNumber = intent.getStringExtra("phoneNumber");
         receivedAddress = intent.getStringExtra("address");
         receivedCity = intent.getStringExtra("city");
 
-        fullName.setText(receivedFullName);
-        speciality.setText(receivedSpeciality);
+
+        fullName.setText(receivedFullName.toString());
+        speciality.setText(receivedSpeciality.toString());
 
 
 //        StorageReference storageReference = FirebaseStorage.getInstance().getReference();

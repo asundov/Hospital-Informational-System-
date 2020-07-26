@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScheduleAppointmentActivity" >
-
+    tools:context=".ScheduleAppointmentActivity"
+    android:background="@drawable/gradient"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_bottom_rounded"
         android:orientation="vertical">
 
         <TextView
@@ -20,9 +20,10 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:text="Scheduling an appointment"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#ffffff"/>
 
         <ImageView
             android:id="@+id/imageView"
@@ -37,7 +38,8 @@
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="Monday-Friday"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            />
 
         <TextView
             android:id="@+id/textView9"
@@ -107,7 +109,7 @@
             android:background="@drawable/custombutton"
             android:textColor="#FFF"
             android:fontFamily="@font/montserrat_bold"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="120dp"
             android:onClick="chooseDay"/>
 
         <TextView
@@ -119,7 +121,7 @@
             android:textColor="#33aeb6"
             android:fontFamily="@font/montserrat_bold"
             android:textSize="16sp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="30dp"
             android:visibility="gone"/>
         <TextView
             android:id="@+id/time"
@@ -136,7 +138,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="80dp">
 
             <Button
                 android:id="@+id/button2"

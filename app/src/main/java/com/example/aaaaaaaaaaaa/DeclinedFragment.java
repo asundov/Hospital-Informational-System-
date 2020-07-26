@@ -49,9 +49,6 @@ public class DeclinedFragment extends Fragment {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
-    //U TABLICU APPOINTMENTS TRAZI email pacijenta i declined i ako je, spremi u myAppointments listu
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -98,53 +95,7 @@ public class DeclinedFragment extends Fragment {
                             }
                         }
                     }
-                }));
-
-
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        emailPatient = user.getEmail();
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Appointments");
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                myReasons.clear();
-//                myAppointments.clear();
-//                for(DataSnapshot data : dataSnapshot.getChildren())
-//                {
-//                    Appointment appointment = data.getValue(Appointment.class);
-//                    if(appointment.getEmailPatient().equals(emailPatient) && appointment.getStatus().equals("Declined")) {
-//                        myReasons.add(data.child("reason").getValue(String.class));
-//                        myAppointments.add(appointment);
-//                        if (getActivity()!=null){
-//                            adapter = new AppointmentAdapter(getActivity(), myAppointments);
-//                            declinedAppointments.setAdapter(adapter);
-//                        }
-//                    }
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
-
-
-        declinedAppointments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SweetAlertDialog alertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
-                alertDialog.setTitleText("Reason of refusal");
-                alertDialog.setContentText(myReasons.get(position));
-                alertDialog.show();
-                Button btn = (Button) alertDialog.findViewById(R.id.confirm_button);
-                btn.setBackgroundColor(Color.parseColor("#33aeb6"));
-
-            }
-        });
-
-
+                }, new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }));
         return view;
     }
 }

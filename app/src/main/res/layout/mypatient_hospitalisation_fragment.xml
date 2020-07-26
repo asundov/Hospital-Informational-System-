@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:src="@drawable/ic_plus_sign"
-        android:backgroundTint="#33aeb6"
+        android:backgroundTint="#1B61B5"
         app:borderWidth="0dp"
         android:layout_margin="16dp" />
 </FrameLayout>

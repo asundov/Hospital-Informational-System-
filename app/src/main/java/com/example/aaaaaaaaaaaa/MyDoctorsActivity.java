@@ -33,6 +33,7 @@ public class MyDoctorsActivity extends AppCompatActivity {
     List<Relationship> relationship;
     MyDoctorsAdapter adapter;
     String patientEmail;
+    List<String> popis;
 
     INodeJs myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -46,6 +47,8 @@ public class MyDoctorsActivity extends AppCompatActivity {
         myDoctors = new ArrayList<>();
         relationship = new ArrayList<>();
 
+        popis = new ArrayList<>();
+
         patientEmail = getIntent().getStringExtra("patient_email");
 
 
@@ -53,33 +56,32 @@ public class MyDoctorsActivity extends AppCompatActivity {
         Retrofit retrofit = RetrofitClient.getInstance();
         myAPI = retrofit.create(INodeJs.class);
 
-        compositeDisposable.add(myAPI.relationship(patientEmail)
+        compositeDisposable.add(myAPI.relationship2(patientEmail.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
+                               @Override
+                               public void accept(String s) throws Exception {
 
-                        myDoctors.clear();
 
-                        String emailDoctor = "";
+                                   //myDoctors.clear();
+                                   String email = "";
 
-                        JSONArray jsonArray = new JSONArray(s);
+                                   JSONArray jsonArrays = new JSONArray(s);
 
-                        for (int count = 0; count < jsonArray.length(); count++) {
-                            JSONObject object = jsonArray.getJSONObject(count);
-                            emailDoctor = object.getString("emailDoctor");
-                            Toast.makeText(MyDoctorsActivity.this, ""+emailDoctor, Toast.LENGTH_SHORT).show();
+                                   for (int count = 0; count < jsonArrays.length(); count++) {
+                                       JSONObject object = jsonArrays.getJSONObject(count);
+                                       email = object.getString("emailDoctor");
+                                       compositeDisposable.add(myAPI.get_doctor_list(email.toString())
+                                               .subscribeOn(Schedulers.io())
+                                               .observeOn(AndroidSchedulers.mainThread())
+                                               .subscribe(new Consumer<String>() {
+                                                   @Override
+                                                   public void accept(String s) throws Exception {
 
-                            compositeDisposable.add(myAPI.get_doctor(emailDoctor)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new Consumer<String>() {
-                                        @Override
-                                        public void accept(String s) throws Exception {
+                                                       String fullName = "";
+                                                       String speciality = "";
 
-                                            String fullName = "";
-                                            String speciality = "";
 
                                             JSONArray jsonArray = new JSONArray(s);
 
@@ -95,12 +97,15 @@ public class MyDoctorsActivity extends AppCompatActivity {
                                             }
 
 
-                                        }
+                                                   }
 
-                                    }));
-                        }
-                    }
-                }));
+                                               }));
+
+                                   }
+                               }
+                           }
+//                , new Consumer<Throwable>() { @Override public void accept(Throwable throwable) throws Exception { } }
+                ));
 
 
         myDoctorsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -120,8 +125,6 @@ public class MyDoctorsActivity extends AppCompatActivity {
 
     }
 }
-
-
 
 
 //        compositeDisposable.add(myAPI.get_all_doctors("")

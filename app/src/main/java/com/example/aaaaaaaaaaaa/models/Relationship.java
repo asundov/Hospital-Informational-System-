@@ -12,6 +12,10 @@ public class Relationship {
         this.emailPatient = emailPatient;
     }
 
+    public Relationship(String emailDoctor) {
+        this.emailDoctor = emailDoctor;
+    }
+
     public String getEmailDoctor() {
         return emailDoctor;
     }
